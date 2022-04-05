@@ -1,0 +1,87 @@
+.newUser {
+  flex: 4;
+  margin-left: 9%;
+}
+
+.newUserForm {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.newUserItem {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.newUserItem > label {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(107, 107, 107);
+}
+
+.newUserItem > input {
+  height: 20px;
+  padding: 10px;
+  border: 1px solid darkgray;
+  border-radius: 5px;
+}
+
+.newUserCheckboxContainer {
+  display: flex;
+  flex-direction: row;
+  margin-right: 50px;
+  margin-left: 10px;
+  align-content: space-between;
+}
+
+.newUserCheckboxContainer > label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(107, 107, 107);
+}
+
+.newUserCheckboxLabel {
+  margin-right: 20px;
+}
+
+.AgingBucketCheckbox {
+  margin-left: 5px;
+}
+
+.AgingBucketCheckboxsm {
+  margin-left: 10px;
+}
+
+.AgingBucketCheckboxlg {
+  margin-left: 15px;
+}
+
+.ProgramCodeChecboxlabel {
+  margin-left: 7px;
+}
+
+.FinanceCompanyChecbox {
+  margin-left: 10px;
+}
+
+.FinanceCompanyChecboxsm {
+  margin-left: 5px;
+}
+
+.newUserButton{
+    width: 200px;
+    border: none;
+    background-color: darkblue;
+    color: white;
+    padding: 7px 10px;
+    font-weight: 600;
+    border-radius: 10px;
+    margin-top: 30px;
+    cursor: pointer;
+}
