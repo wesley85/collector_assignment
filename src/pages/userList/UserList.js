@@ -2,7 +2,7 @@ import "./userList.css";
 import React from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import { DeleteOutline } from "@material-ui/icons";
+import { DeleteOutline, Edit } from "@material-ui/icons";
 
 
 class UserList extends React.Component {
@@ -20,7 +20,6 @@ class UserList extends React.Component {
     .then((result) => result.data)
     .then((result) => {
       this.setState({collectorList: result});
-      console.log(result);
     });
   };
 
@@ -29,7 +28,6 @@ class UserList extends React.Component {
     this.getCollectors();
     window.location.reload(true);
 };
-  
   render() {
     return (
       <div className="userList">
@@ -73,6 +71,12 @@ class UserList extends React.Component {
                   {Collectors.FinanceCompany}
                   </td>
                   <td className="deleteColumn">
+                      <Link to={{
+                        pathname: `/editCollectors/${Collectors.CollectorID}`,
+                        collectorList: {Collectors: Collectors}
+                      }}>
+                        <Edit className="editCollector" />
+                      </Link>
                       <DeleteOutline className="deleteCollector" onClick={() => this.onDeleteClick(Collectors.CollectorID)}/>
                   </td>
                 </tr>
@@ -82,9 +86,6 @@ class UserList extends React.Component {
         ))}
         <Link to="/newUser">
           <button className="userListAddButton">Add Collector</button>
-        </Link>
-        <Link to="/updateUser">
-          <button className="userListAddButton">Edit Collector</button>
         </Link>
       </div>
     );

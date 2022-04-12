@@ -19,24 +19,6 @@ app.get('/getCollectors', (req, res) => {
      })
 })
 
-// register user
-app.post('/register', function (req, res) {
-    sql.connect(config).then(pool => {
-        return pool.request()
-        .query(`INSERT INTO CollectorAssignment.tCollectorLoginTest
-            (
-                UserName,
-                Password
-            ) VALUES (
-                '${req.body.UserNmae}',
-                '${req.body.Password}'
-            )`)
-            .then(result => {
-            res.send(result)
-        })
-     })
-  });
-
 // Add Collector Personal Info
 app.post('/addCollector', function (req, res) {
     sql.connect(config).then(pool => {

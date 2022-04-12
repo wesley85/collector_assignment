@@ -7,7 +7,6 @@ import UserList from "./pages/userList/UserList";
 import NewUser from "./pages/newUser/NewUser";
 import DeleteUser from "./pages/deleteUser/DeleteUser";
 import UpdateUser from "./pages/updateUser/UpdateUser";
-import Login from './pages/login/login';
 
 function App() {
 
@@ -29,12 +28,7 @@ function App() {
           <Route path="/deleteUser">
             <DeleteUser />
           </Route>
-          <Route path="/updateUser" >
-            <UpdateUser />
-          </Route>
-          <Route exact path="/Login">
-            <Login />
-          </Route>
+          <Route path="/editCollectors/:CollectorID"  component={UpdateUser} />
         </Switch>
       </div>
     </Router>
