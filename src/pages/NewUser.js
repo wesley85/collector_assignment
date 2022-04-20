@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import "./newUser.css";
+import { Link } from "react-router-dom";
 
 class NewUser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    Active: props.Active || false,
+      Active: false,
     FirstName: '',
     MiddleInitial: '',
     LastName: '',
@@ -38,6 +38,7 @@ handleActiveChange() {
     Active: !this.state.Active
   })
 }
+
 handleAging115Change() {
   this.setState({ 
     Aging1to15: !this.state.Aging1to15
@@ -88,7 +89,7 @@ handleProgramSUChange() {
 
 onSumitClick = () => {
     axios.post('http://localhost:5000/addCollector', {
-        Active: this.state.Active,
+      Active: this.state.Active,
         FirstName: this.state.FirstName,
         MiddleInitial: this.state.MiddleInitial,
         LastName: this.state.LastName,
@@ -104,22 +105,24 @@ onSumitClick = () => {
         ProgramBucketSU: this.state.ProgramBucketSU,
         FinanceCompany: this.state.FinanceCompany
       });
-};
+    };
 
   render() {
     console.log(this.state)
     return (
       <div className="newUser">
-        <h1 className="newUserTitle">New User</h1>
         <form className="newUserForm">
         <div className="newUserItem">
+        <h1 className='newUserHeader'>Create Collector</h1>
           {/*Active or inactive User*/}
             <label>Active</label>
+          <div className='newUserCheckboxContainer'>
             <input
                 type='checkbox'
                 value={this.state.Active} 
                 onChange={this.handleActiveChange}
                 />
+                </div>
           {/*Collector First Name*/}
             <label>First Name</label>
             <input 
@@ -260,7 +263,29 @@ onSumitClick = () => {
                />
               </label>
             </div>
-            <button className="newUserButton" onClick={() => this.onSumitClick()}>Create Collector</button>
+            <label>Debt Type</label>
+            <div className='newUserCheckboxContainer'>
+              <label className='newUserCheckboxLabel'>Delinquency<br/>
+              <input
+                type='radio'
+                name='debtType'
+                className='FinanceCompanyChecbox'
+                onChange={e => this.setState({
+                  debtType: 'Delinquency'
+                })}
+              /></label>
+              <label className='newUserCheckboxLabel'>Fee<br/>
+              <input
+                type='radio'
+                name='debtType'
+                className='FinanceCompanyChecbox' 
+                onChange={e => this.setState({
+                  debtType: 'Fee'
+                })}
+              /></label>
+            </div>
+            <Link className="userListAddButton" to='/users' onClick={() => this.onSumitClick()}>Create Collector</Link>
+            <Link className="userListGoBackButton" to='/users'>Go Back</Link>
           </div>
         </form>
       </div>

@@ -1,8 +1,6 @@
 import React from "react";
-import "./topbar.css";
-import { NotificationsNone, Language, Settings } from "@material-ui/icons";
-import logo from '../../img/logo.jpg';
-import avatar from '../../img/pic.jpg';
+import { Settings } from "@material-ui/icons";
+import logo from '../img/logo.jpg';
 import { Link } from 'react-router-dom';
 
 export default function Topbar() {
@@ -18,17 +16,17 @@ export default function Topbar() {
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">
-            <NotificationsNone className="topBarIcon"/>
-            <span className="topIconAlert">2</span>
+            {/* <NotificationsNone className="topBarIcon"/> */}
+            {/* <span className="topIconAlert">2</span> */}
           </div>
           <div className="topbarIconContainer">
-            <Language className="topBarIcon" />
-            <span className="topIconAlert">2</span>
+            {/* <Language className="topBarIcon" /> */}
+            {/* <span className="topIconAlert">2</span> */}
           </div>
           <div className="topbarIconContainer">
             <Settings className="topBarIcon" />
           </div>
-          <img src={avatar} alt="" className="topAvatar" />
+          {/* <img src={avatar} alt="" className="topAvatar" /> */}
         </div>
       </div>
     </div>

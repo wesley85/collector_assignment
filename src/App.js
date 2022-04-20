@@ -1,12 +1,11 @@
-import './App.css';
-import Sidebar from "./components/sidebar/Sidebar";
-import Topbar from "./components/topbar/Topbar";
-import Home from "./pages/home/Home";
+import Sidebar from "./components/Sidebar";
+import Topbar from "./components/Topbar";
+import Home from "./pages/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import UserList from "./pages/userList/UserList";
-import NewUser from "./pages/newUser/NewUser";
-import DeleteUser from "./pages/deleteUser/DeleteUser";
-import UpdateUser from "./pages/updateUser/UpdateUser";
+import UserList from "./pages/UserList";
+import NewUser from "./pages/NewUser";
+import UpdateUser from "./pages/UpdateUser";
+import AssignmentPreview from './components/AssignmentPreview';  
 
 function App() {
 
@@ -25,10 +24,8 @@ function App() {
           <Route path="/newUser">
             <NewUser />
           </Route>
-          <Route path="/deleteUser">
-            <DeleteUser />
-          </Route>
           <Route path="/editCollectors/:CollectorID"  component={UpdateUser} />
+          <Route path="/assignmentPreview"  component={AssignmentPreview} />
         </Switch>
       </div>
     </Router>

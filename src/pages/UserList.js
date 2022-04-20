@@ -1,9 +1,7 @@
-import "./userList.css";
 import React from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { DeleteOutline, Edit } from "@material-ui/icons";
-
 
 class UserList extends React.Component {
   state = {
@@ -28,22 +26,27 @@ class UserList extends React.Component {
     this.getCollectors();
     window.location.reload(true);
 };
+
   render() {
     return (
       <div className="userList">
+        <Link to="/users">
+          <button className="userListButton"> Import Collectors </button>
+        </Link>
         <h3>Collectors</h3>
             <table className="blueTableHeaders">
               <thead>
                 <tr>
                   <td>Active</td>
                   <td>Collectors</td>
-                  <td>Aging Bucket<br/>1-15 | 31-45 | 31-60 | Over60</td>
+                  <td>Aging Bucket<br/>1-30 | 31-45 | 31-60 | Over60</td>
                   <td>Program Bucket<br/>
                     <span className="ProgramBucketHeaderA">A </span>
                     <span className="ProgramBucketHeader">B </span> 
                     <span className="ProgramBucketHeader">C </span> 
                     <span className="ProgramBucketHeader">SU</span></td>
                   <td>Finance Company<br/>Pawnee | Tandem | Both</td>
+                  <td>Debt Type</td>
                   <td></td>
                 </tr>
               </thead>
@@ -53,22 +56,25 @@ class UserList extends React.Component {
             <table className="blueTableData">
               <thead>
                 <tr>
-                  <td key={Collectors.CollectorID}><input type="checkbox" name="Active" defaultChecked={Collectors.Active === false ? false : true} /></td>
+                  <td key={Collectors.CollectorID}><input type="checkbox" name="Active" checked={Collectors.Active === false ? false : true} readOnly /></td>
                   <td>{Collectors.FirstName} {Collectors.LastName} | {Collectors.CollectorCode}</td>
                   <td>
-                  <input type="checkbox" name="Aging1to15" defaultChecked={Collectors.Aging1to15 === false ? false : true}/>
-                  <input type="checkbox" name="Aging31to45" defaultChecked={Collectors.Aging31to45 === false ? false : true}/>
-                  <input type="checkbox" name="Aging31to60" defaultChecked={Collectors.Aging31to60 === false ? false : true}/>
-                  <input type="checkbox" name="AgingOver60" defaultChecked={Collectors.AgingOver60 === false ? false : true}/>
+                  <input type="checkbox" name="Aging1to15" checked={Collectors.Aging1to15 === false ? false : true} />
+                  <input type="checkbox" name="Aging31to45" checked={Collectors.Aging31to45 === false ? false : true}/>
+                  <input type="checkbox" name="Aging31to60" checked={Collectors.Aging31to60 === false ? false : true}/>
+                  <input type="checkbox" name="AgingOver60" checked={Collectors.AgingOver60 === false ? false : true}/>
                   </td>
                   <td>
-                  <input type="checkbox" name="ProgramBucketA" defaultChecked={Collectors.ProgramBucketA === false ? false : true}/>
-                  <input type="checkbox" name="ProgramBucketB" defaultChecked={Collectors.ProgramBucketB === false ? false : true}/>
-                  <input type="checkbox" name="ProgramBucketC" defaultChecked={Collectors.ProgramBucketC === false ? false : true}/>
-                  <input type="checkbox" name="ProgramBucketSU" defaultChecked={Collectors.ProgramBucketSU === false ? false : true}/>
+                  <input type="checkbox" name="ProgramBucketA" checked={Collectors.ProgramBucketA === false ? false : true}/>
+                  <input type="checkbox" name="ProgramBucketB" checked={Collectors.ProgramBucketB === false ? false : true}/>
+                  <input type="checkbox" name="ProgramBucketC" checked={Collectors.ProgramBucketC === false ? false : true}/>
+                  <input type="checkbox" name="ProgramBucketSU" checked={Collectors.ProgramBucketSU === false ? false : true}/>
                   </td>
                   <td>
                   {Collectors.FinanceCompany}
+                  </td>
+                  <td>
+                  {Collectors.debtType}
                   </td>
                   <td className="deleteColumn">
                       <Link to={{
@@ -85,7 +91,16 @@ class UserList extends React.Component {
           </div>
         ))}
         <Link to="/newUser">
-          <button className="userListAddButton">Add Collector</button>
+          <button className="userListButton">Add Collector</button>
+        </Link>
+        <Link to="/AssignmentPreview">
+          <button className="userListButton">Assignment Preview</button>
+        </Link>
+        <Link to="/users">
+          <button className="userListButton">Reset Assignments</button>
+        </Link>
+        <Link to="/users">
+          <button className="userListButton">ReAssign jobs</button>
         </Link>
       </div>
     );

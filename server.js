@@ -19,6 +19,16 @@ app.get('/getCollectors', (req, res) => {
      })
 })
 
+// Get collector
+app.get('/getCollector/:CollectorID', (req, res) => {
+    sql.connect(config).then(pool => {
+        return pool.request()
+        .query(`Exec [CollectorAssignment].[sCollectorGet]`).then(result => {
+            res.send(result.recordset)
+        })
+     })
+})
+
 // Add Collector Personal Info
 app.post('/addCollector', function (req, res) {
     sql.connect(config).then(pool => {
@@ -52,21 +62,9 @@ app.post('/addCollector', function (req, res) {
         return pool.request()
         .query(`Exec CollectorAssignment.sUpdateCollector
         @CollectorID='${req.body.CollectorID}',
-        @CollectorOptionsID='${req.body.CollectorOptionsID}',
-        @ProgramBucketID='${req.body.ProgramBucketID}',
-        @FinanceCompanyID='${req.body.FinanceCompanyID}',
         @Active='${req.body.Active}', 
         @LastName='${req.body.LastName}', 
-        @CollectorCode='${req.body.CollectorCode}',
-        @Aging1to15='${req.body.Aging1to15}',
-        @Aging31to45='${req.body.Aging31to45}',
-        @Aging31to60='${req.body.Aging31to60}',
-        @AgingOver60='${req.body.AgingOver60}',
-        @ProgramBucketA='${req.body.ProgramBucketA}',
-        @ProgramBucketB='${req.body.ProgramBucketB}',
-        @ProgramBucketC='${req.body.ProgramBucketC}',
-        @ProgramBucketSU='${req.body.ProgramBucketSU}',
-        @FinanceCompany='${req.body.FinanceCompany}'
+        @CollectorCode='${req.body.CollectorCode}'
         `)
             .then(result => {
             res.send(result.recordset)
