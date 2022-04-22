@@ -6,7 +6,7 @@ const config = {
     database: 'AspireSupport',
     options: {
         trustServerCertificate: true,
-        trustedConnection: false,
+        trustedConnection: true,
         enableArithAbort: true
         },
     }

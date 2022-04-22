@@ -3,17 +3,20 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class AssignmentPreview extends React.Component {
-  state = {
-    Collectors: '',
-    collectorList: []
+  constructor (props){
+        super(props);
+        this.state = {
+          Collectors: '',
+          collectorList: []
   }
+}
 
   componentDidMount() {
     this.getCollectors()
   }
   
   getCollectors = () => {
-    axios.get('http://localhost:5000/getCollectors')
+    axios.get('https://support.pawneeleasing.com/getCollectors')
     .then((result) => result.data)
     .then((result) => {
       this.setState({collectorList: result});

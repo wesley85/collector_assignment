@@ -14,7 +14,7 @@ class UserList extends React.Component {
   }
   
   getCollectors = () => {
-    axios.get('http://localhost:5000/getCollectors')
+    axios.get('https://support.pawneeleasing.com/getCollectors') //https://support.pawneeleasing.com
     .then((result) => result.data)
     .then((result) => {
       this.setState({collectorList: result});
@@ -22,7 +22,7 @@ class UserList extends React.Component {
   };
 
   onDeleteClick = CollectorID => {
-    axios.delete(`http://localhost:5000/deleteCollector/${CollectorID}`);
+    axios.delete(`https://support.pawneeleasing.com/${CollectorID}`);
     this.getCollectors();
     window.location.reload(true);
 };
