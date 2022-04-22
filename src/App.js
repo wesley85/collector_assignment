@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import UserList from "./pages/UserList";
 import NewUser from "./pages/NewUser";
 import UpdateUser from "./pages/UpdateUser";
-import AssignmentPreview from './components/AssignmentPreview';  
+import AssignmentPreview from './pages/AssignmentPreview';  
 
 function App() {
 

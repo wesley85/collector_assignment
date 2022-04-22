@@ -56,19 +56,19 @@ class UserList extends React.Component {
             <table className="blueTableData">
               <thead>
                 <tr>
-                  <td key={Collectors.CollectorID}><input type="checkbox" name="Active" checked={Collectors.Active === false ? false : true} readOnly /></td>
+                  <td key={Collectors.CollectorID}><input type="checkbox" name="Active" defaultChecked={Collectors.Active === false ? false : true} /></td>
                   <td>{Collectors.FirstName} {Collectors.LastName} | {Collectors.CollectorCode}</td>
                   <td>
-                  <input type="checkbox" name="Aging1to15" checked={Collectors.Aging1to15 === false ? false : true} />
-                  <input type="checkbox" name="Aging31to45" checked={Collectors.Aging31to45 === false ? false : true}/>
-                  <input type="checkbox" name="Aging31to60" checked={Collectors.Aging31to60 === false ? false : true}/>
-                  <input type="checkbox" name="AgingOver60" checked={Collectors.AgingOver60 === false ? false : true}/>
+                  <input type="checkbox" name="Aging1to15" defaultChecked={Collectors.Aging1to15 === false ? false : true} />
+                  <input type="checkbox" name="Aging31to45" defaultChecked={Collectors.Aging31to45 === false ? false : true}/>
+                  <input type="checkbox" name="Aging31to60" defaultChecked={Collectors.Aging31to60 === false ? false : true}/>
+                  <input type="checkbox" name="AgingOver60" defaultChecked={Collectors.AgingOver60 === false ? false : true}/>
                   </td>
                   <td>
-                  <input type="checkbox" name="ProgramBucketA" checked={Collectors.ProgramBucketA === false ? false : true}/>
-                  <input type="checkbox" name="ProgramBucketB" checked={Collectors.ProgramBucketB === false ? false : true}/>
-                  <input type="checkbox" name="ProgramBucketC" checked={Collectors.ProgramBucketC === false ? false : true}/>
-                  <input type="checkbox" name="ProgramBucketSU" checked={Collectors.ProgramBucketSU === false ? false : true}/>
+                  <input type="checkbox" name="ProgramBucketA" defaultChecked={Collectors.ProgramBucketA === false ? false : true}/>
+                  <input type="checkbox" name="ProgramBucketB" defaultChecked={Collectors.ProgramBucketB === false ? false : true}/>
+                  <input type="checkbox" name="ProgramBucketC" defaultChecked={Collectors.ProgramBucketC === false ? false : true}/>
+                  <input type="checkbox" name="ProgramBucketSU" defaultChecked={Collectors.ProgramBucketSU === false ? false : true}/>
                   </td>
                   <td>
                   {Collectors.FinanceCompany}

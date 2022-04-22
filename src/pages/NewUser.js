@@ -103,7 +103,8 @@ onSumitClick = () => {
         ProgramBucketB: this.state.ProgramBucketB,
         ProgramBucketC: this.state.ProgramBucketC,
         ProgramBucketSU: this.state.ProgramBucketSU,
-        FinanceCompany: this.state.FinanceCompany
+        FinanceCompany: this.state.FinanceCompany,
+        debtType: this.state.debtType
       });
     };
 
@@ -284,8 +285,16 @@ onSumitClick = () => {
                 })}
               /></label>
             </div>
-            <Link className="userListAddButton" to='/users' onClick={() => this.onSumitClick()}>Create Collector</Link>
-            <Link className="userListGoBackButton" to='/users'>Go Back</Link>
+            <Link to='/'>
+              <button className="userListAddButton" onClick={() => this.onSumitClick()}>
+                Create Collector
+              </button>
+            </Link>
+            <Link to='/users'>
+              <button className="userListGoBackButton" to='/users'>
+                Go Back
+              </button>
+            </Link>
           </div>
         </form>
       </div>

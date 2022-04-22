@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json({ extended: true }));
 var sql = require("mssql");
 
-// Get collectors
+// Get collectors listing all collectors
 app.get('/getCollectors', (req, res) => {
     sql.connect(config).then(pool => {
         return pool.request()
@@ -19,7 +19,7 @@ app.get('/getCollectors', (req, res) => {
      })
 })
 
-// Get collector
+// Get collector singular by ID
 app.get('/getCollector/:CollectorID', (req, res) => {
     sql.connect(config).then(pool => {
         return pool.request()
@@ -48,7 +48,8 @@ app.post('/addCollector', function (req, res) {
 		            @ProgramBucketB='${req.body.ProgramBucketB}', 
 		            @ProgramBucketC='${req.body.ProgramBucketC}', 
 		            @ProgramBucketSU='${req.body.ProgramBucketSU}',
-                    @FinanceCompany='${req.body.FinanceCompany}'
+                    @FinanceCompany='${req.body.FinanceCompany}',
+                    @debtType='${req.body.debtType}'
                 `)
                 .then(result => {
             res.send(result)
