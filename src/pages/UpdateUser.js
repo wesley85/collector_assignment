@@ -20,13 +20,13 @@ useEffect(() => {
 }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
 const loadUser = async () => {
-  const result = await axios.get(`https://support.pawneeleasing.com/getCollector/${CollectorID}`);
+  const result = await axios.get(`https://10.0.0.218:5000/api/collector/${CollectorID}`);
   setUser(result.data[CollectorID - 1]);
 };
 
 const onSubmit = async e => {
   e.preventDefault();
-  await axios.put(`https://support.pawneeleasing.com/UpdateUser/${CollectorID}`, {
+  await axios.put(`https://10.0.0.218:5000/api/collector/${CollectorID}`, {
         CollectorID: CollectorID,
         Active: Active,  
         LastName: LastName,

@@ -6,7 +6,7 @@ class NewUser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Active: false,
+    Active: false,
     FirstName: '',
     MiddleInitial: '',
     LastName: '',
@@ -88,7 +88,7 @@ handleProgramSUChange() {
 }
 
 onSumitClick = () => {
-    axios.post('https://support.pawneeleasing.com/addCollector', {
+    axios.post('https://10.0.0.218:5000/api/collector', {
       Active: this.state.Active,
         FirstName: this.state.FirstName,
         MiddleInitial: this.state.MiddleInitial,
@@ -109,7 +109,6 @@ onSumitClick = () => {
     };
 
   render() {
-    console.log(this.state)
     return (
       <div className="newUser">
         <form className="newUserForm">

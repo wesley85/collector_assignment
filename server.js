@@ -4,13 +4,23 @@ const bodyParser = require('body-parser');
 const config = require('./src/dbfiles/dbConfig')
 
 const app = express();
+app.use((req,res,next)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    if(req.method ==='GET'){
+        res.header("Access-Control-Allow-Methods", 'GET,POST,PUT,DELETE,PATCH');
+        return res.status(200).json({});
+    }
+    next();
+});
 
-app.use(cors());
+app.use('*',cors());
 app.use(bodyParser.json({ extended: true }));
 var sql = require("mssql");
 
-// Get collectors listing all collectors
+// Get collectors
 app.get('/getCollectors', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     sql.connect(config).then(pool => {
         return pool.request()
         .query(`Exec [CollectorAssignment].[sCollectorGet]`).then(result => {
@@ -19,8 +29,20 @@ app.get('/getCollectors', (req, res) => {
      })
 })
 
-// Get collector singular by ID
+// Get collectors
+app.get('/testConnection', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    sql.connect(config).then(pool => {
+        return pool.request()
+        .query(`SELECT FirstName FROM CollectorAssignment.tCollectorsTest `).then(result => {
+            res.send(result.recordset)
+        })
+     })
+})
+
+// Get collectors
 app.get('/getCollector/:CollectorID', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     sql.connect(config).then(pool => {
         return pool.request()
         .query(`Exec [CollectorAssignment].[sCollectorGet]`).then(result => {
@@ -31,6 +53,7 @@ app.get('/getCollector/:CollectorID', (req, res) => {
 
 // Add Collector Personal Info
 app.post('/addCollector', function (req, res) {
+    res.set('Access-Control-Allow-Origin', '*');
     sql.connect(config).then(pool => {
         return pool.request()
         .query(`Exec CollectorAssignment.sCreateCollector 
@@ -48,8 +71,7 @@ app.post('/addCollector', function (req, res) {
 		            @ProgramBucketB='${req.body.ProgramBucketB}', 
 		            @ProgramBucketC='${req.body.ProgramBucketC}', 
 		            @ProgramBucketSU='${req.body.ProgramBucketSU}',
-                    @FinanceCompany='${req.body.FinanceCompany}',
-                    @debtType='${req.body.debtType}'
+                    @FinanceCompany='${req.body.FinanceCompany}'
                 `)
                 .then(result => {
             res.send(result)
@@ -59,13 +81,26 @@ app.post('/addCollector', function (req, res) {
 
   //Update Collector
   app.put('/UpdateUser/:CollectorID', function (req, res) {
+    res.set('Access-Control-Allow-Origin', '*');
     sql.connect(config).then(pool => {
         return pool.request()
         .query(`Exec CollectorAssignment.sUpdateCollector
         @CollectorID='${req.body.CollectorID}',
+        @CollectorOptionsID='${req.body.CollectorOptionsID}',
+        @ProgramBucketID='${req.body.ProgramBucketID}',
+        @FinanceCompanyID='${req.body.FinanceCompanyID}',
         @Active='${req.body.Active}', 
         @LastName='${req.body.LastName}', 
-        @CollectorCode='${req.body.CollectorCode}'
+        @CollectorCode='${req.body.CollectorCode}',
+        @Aging1to15='${req.body.Aging1to15}',
+        @Aging31to45='${req.body.Aging31to45}',
+        @Aging31to60='${req.body.Aging31to60}',
+        @AgingOver60='${req.body.AgingOver60}',
+        @ProgramBucketA='${req.body.ProgramBucketA}',
+        @ProgramBucketB='${req.body.ProgramBucketB}',
+        @ProgramBucketC='${req.body.ProgramBucketC}',
+        @ProgramBucketSU='${req.body.ProgramBucketSU}',
+        @FinanceCompany='${req.body.FinanceCompany}'
         `)
             .then(result => {
             res.send(result.recordset)
@@ -75,6 +110,7 @@ app.post('/addCollector', function (req, res) {
 
 // Delete Collector
 app.delete('/deleteCollector/:CollectorID', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     sql.connect(config).then(pool => {
         return pool.request()
         .query(`DELETE FROM CollectorAssignment.tCollectorsTest 
@@ -84,6 +120,6 @@ app.delete('/deleteCollector/:CollectorID', (req, res) => {
      })
 })
 
-app.listen(':443', () => {
-    console.log('running on :443');
+app.listen(5000, () => {
+    console.log('running on port 5000');
 })

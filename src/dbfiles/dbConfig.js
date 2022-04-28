@@ -2,7 +2,7 @@
 const config = {
     user: 'InfoSys',
     password: 'PawneeTandem1!',
-    server: 'server-sql-vt',
+    server: '10.0.0.218',
     database: 'AspireSupport',
     options: {
         trustServerCertificate: true,

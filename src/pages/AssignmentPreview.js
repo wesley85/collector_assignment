@@ -16,7 +16,7 @@ class AssignmentPreview extends React.Component {
   }
   
   getCollectors = () => {
-    axios.get('https://support.pawneeleasing.com/getCollectors')
+    axios.get('https://10.0.0.218:5000/api/collector')
     .then((result) => result.data)
     .then((result) => {
       this.setState({collectorList: result});
