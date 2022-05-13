@@ -4,15 +4,11 @@ const bodyParser = require('body-parser');
 const config = require('./src/dbfiles/dbConfig')
 
 const app = express();
-app.use((req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    if(req.method ==='GET'){
-        res.header("Access-Control-Allow-Methods", 'GET,POST,PUT,DELETE,PATCH');
-        return res.status(200).json({});
-    }
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
     next();
-});
+  });
 
 app.use('*',cors());
 app.use(bodyParser.json({ extended: true }));
@@ -30,18 +26,7 @@ app.get('/getCollectors', (req, res) => {
 })
 
 // Get collectors
-app.get('/testConnection', (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
-    sql.connect(config).then(pool => {
-        return pool.request()
-        .query(`SELECT FirstName FROM CollectorAssignment.tCollectorsTest `).then(result => {
-            res.send(result.recordset)
-        })
-     })
-})
-
-// Get collectors
-app.get('/getCollector/:CollectorID', (req, res) => {
+app.get('/getCollector/:collectorID', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
     sql.connect(config).then(pool => {
         return pool.request()
@@ -57,21 +42,21 @@ app.post('/addCollector', function (req, res) {
     sql.connect(config).then(pool => {
         return pool.request()
         .query(`Exec CollectorAssignment.sCreateCollector 
-                    @Active='${req.body.Active}', 
-                    @FirstName='${req.body.FirstName}', 
-                    @MiddleInitial='${req.body.MiddleInitial}', 
-                    @LastName='${req.body.LastName}', 
-                    @CollectorCode='${req.body.CollectorCode}',
+                    @active='${req.body.active}', 
+                    @firstName='${req.body.firstName}', 
+                    @middleInitial='${req.body.middleInitial}', 
+                    @lastName='${req.body.lastName}', 
+                    @collectorCode='${req.body.collectorCode}',
                     @CollectionTeamID='${req.body.CollectionTeamID}',
-                    @Aging1to15='${req.body.Aging1to15}',
-                    @Aging31to45='${req.body.Aging31to45}',
-                    @Aging31to60='${req.body.Aging31to60}',
-                    @AgingOver60='${req.body.AgingOver60}',
-                    @ProgramBucketA='${req.body.ProgramBucketA}', 
-		            @ProgramBucketB='${req.body.ProgramBucketB}', 
-		            @ProgramBucketC='${req.body.ProgramBucketC}', 
-		            @ProgramBucketSU='${req.body.ProgramBucketSU}',
-                    @FinanceCompany='${req.body.FinanceCompany}'
+                    @aging1to15='${req.body.aging1to15}',
+                    @aging31to45='${req.body.aging31to45}',
+                    @aging31to60='${req.body.aging31to60}',
+                    @agingOver60='${req.body.agingOver60}',
+                    @programBucketA='${req.body.programBucketA}', 
+		            @programBucketB='${req.body.programBucketB}', 
+		            @programBucketC='${req.body.programBucketC}', 
+		            @programBucketSU='${req.body.programBucketSU}',
+                    @financeCompany='${req.body.financeCompany}'
                 `)
                 .then(result => {
             res.send(result)
@@ -80,27 +65,27 @@ app.post('/addCollector', function (req, res) {
   });  
 
   //Update Collector
-  app.put('/UpdateUser/:CollectorID', function (req, res) {
+  app.put('/UpdateUser/:collectorID', function (req, res) {
     res.set('Access-Control-Allow-Origin', '*');
     sql.connect(config).then(pool => {
         return pool.request()
         .query(`Exec CollectorAssignment.sUpdateCollector
-        @CollectorID='${req.body.CollectorID}',
+        @collectorID='${req.body.collectorID}',
         @CollectorOptionsID='${req.body.CollectorOptionsID}',
         @ProgramBucketID='${req.body.ProgramBucketID}',
-        @FinanceCompanyID='${req.body.FinanceCompanyID}',
-        @Active='${req.body.Active}', 
-        @LastName='${req.body.LastName}', 
-        @CollectorCode='${req.body.CollectorCode}',
-        @Aging1to15='${req.body.Aging1to15}',
-        @Aging31to45='${req.body.Aging31to45}',
-        @Aging31to60='${req.body.Aging31to60}',
-        @AgingOver60='${req.body.AgingOver60}',
-        @ProgramBucketA='${req.body.ProgramBucketA}',
-        @ProgramBucketB='${req.body.ProgramBucketB}',
-        @ProgramBucketC='${req.body.ProgramBucketC}',
-        @ProgramBucketSU='${req.body.ProgramBucketSU}',
-        @FinanceCompany='${req.body.FinanceCompany}'
+        @financeCompanyID='${req.body.financeCompanyID}',
+        @active='${req.body.active}', 
+        @lastName='${req.body.lastName}', 
+        @collectorCode='${req.body.collectorCode}',
+        @aging1to15='${req.body.aging1to15}',
+        @aging31to45='${req.body.aging31to45}',
+        @aging31to60='${req.body.aging31to60}',
+        @agingOver60='${req.body.agingOver60}',
+        @programBucketA='${req.body.programBucketA}',
+        @programBucketB='${req.body.programBucketB}',
+        @programBucketC='${req.body.programBucketC}',
+        @programBucketSU='${req.body.programBucketSU}',
+        @financeCompany='${req.body.financeCompany}'
         `)
             .then(result => {
             res.send(result.recordset)
@@ -109,12 +94,12 @@ app.post('/addCollector', function (req, res) {
   });
 
 // Delete Collector
-app.delete('/deleteCollector/:CollectorID', (req, res) => {
+app.delete('/deleteCollector/:collectorID', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
     sql.connect(config).then(pool => {
         return pool.request()
         .query(`DELETE FROM CollectorAssignment.tCollectorsTest 
-                WHERE CollectorID = ${req.params.CollectorID}`).then(result => {
+                WHERE collectorID = ${req.params.collectorID}`).then(result => {
             res.send(result.recordset)
         })
      })

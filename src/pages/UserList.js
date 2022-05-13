@@ -14,17 +14,17 @@ class UserList extends React.Component {
   }
   
   getCollectors = () => {
-    axios.get('https://10.0.0.218:5000/api/collector')
+    axios.get('https://support.pawneeleasing.com/PublishedCollectorAPI/api/Collector') 
     .then((result) => result.data)
     .then((result) => {
       this.setState({collectorList: result});
     });
   };
 
-  onDeleteClick = CollectorID => {
-    axios.delete(`https://10.0.0.218:5000/api/collector/${CollectorID}`);
+  onDeleteClick = collectorID => {
+    axios.delete(`https://support.pawneeleasing.com/PublishedCollectorAPI/api/Collector/${collectorID}`);
     this.getCollectors();
-    window.location.reload(true);
+    // window.location.reload(true);
 };
 
   render() {
@@ -37,7 +37,7 @@ class UserList extends React.Component {
             <table className="blueTableHeaders">
               <thead>
                 <tr>
-                  <td>Active</td>
+                  <td>active</td>
                   <td>Collectors</td>
                   <td>Aging Bucket<br/>1-30 | 31-45 | 31-60 | Over60</td>
                   <td>Program Bucket<br/>
@@ -52,38 +52,38 @@ class UserList extends React.Component {
               </thead>
             </table>
         {this.state.collectorList.map((Collectors) => (
-          <div key={Collectors.CollectorID}>
+          <div key={Collectors.collectorID}>
             <table className="blueTableData">
               <thead>
                 <tr>
-                  <td key={Collectors.CollectorID}><input type="checkbox" name="Active" defaultChecked={Collectors.Active === false ? false : true} /></td>
-                  <td>{Collectors.FirstName} {Collectors.LastName} | {Collectors.CollectorCode}</td>
+                  <td key={Collectors.collectorID}><input type="checkbox" name="active" defaultChecked={Collectors.active === false ? false : true} /></td>
+                  <td>{Collectors.firstName} {Collectors.lastName} | {Collectors.collectorCode}</td>
                   <td>
-                  <input type="checkbox" name="Aging1to15" defaultChecked={Collectors.Aging1to15 === false ? false : true} />
-                  <input type="checkbox" name="Aging31to45" defaultChecked={Collectors.Aging31to45 === false ? false : true}/>
-                  <input type="checkbox" name="Aging31to60" defaultChecked={Collectors.Aging31to60 === false ? false : true}/>
-                  <input type="checkbox" name="AgingOver60" defaultChecked={Collectors.AgingOver60 === false ? false : true}/>
+                  <input type="checkbox" name="aging1to15" defaultChecked={Collectors.aging1to15 === false ? false : true} />
+                  <input type="checkbox" name="aging31to45" defaultChecked={Collectors.aging31to45 === false ? false : true}/>
+                  <input type="checkbox" name="aging31to60" defaultChecked={Collectors.aging31to60 === false ? false : true}/>
+                  <input type="checkbox" name="agingOver60" defaultChecked={Collectors.agingOver60 === false ? false : true}/>
                   </td>
                   <td>
-                  <input type="checkbox" name="ProgramBucketA" defaultChecked={Collectors.ProgramBucketA === false ? false : true}/>
-                  <input type="checkbox" name="ProgramBucketB" defaultChecked={Collectors.ProgramBucketB === false ? false : true}/>
-                  <input type="checkbox" name="ProgramBucketC" defaultChecked={Collectors.ProgramBucketC === false ? false : true}/>
-                  <input type="checkbox" name="ProgramBucketSU" defaultChecked={Collectors.ProgramBucketSU === false ? false : true}/>
+                  <input type="checkbox" name="programBucketA" defaultChecked={Collectors.programBucketA === false ? false : true}/>
+                  <input type="checkbox" name="programBucketB" defaultChecked={Collectors.programBucketB === false ? false : true}/>
+                  <input type="checkbox" name="programBucketC" defaultChecked={Collectors.programBucketC === false ? false : true}/>
+                  <input type="checkbox" name="programBucketSU" defaultChecked={Collectors.programBucketSU === false ? false : true}/>
                   </td>
                   <td>
-                  {Collectors.FinanceCompany}
+                  {Collectors.financeCompany}
                   </td>
                   <td>
                   {Collectors.debtType}
                   </td>
                   <td className="deleteColumn">
                       <Link to={{
-                        pathname: `/editCollectors/${Collectors.CollectorID}`,
+                        pathname: `/editCollectors/${Collectors.collectorID}`,
                         collectorList: {Collectors: Collectors}
                       }}>
                         <Edit className="editCollector" />
                       </Link>
-                      <DeleteOutline className="deleteCollector" onClick={() => this.onDeleteClick(Collectors.CollectorID)}/>
+                      <DeleteOutline className="deleteCollector" onClick={() => this.onDeleteClick(Collectors.collectorID)}/>
                   </td>
                 </tr>
               </thead>

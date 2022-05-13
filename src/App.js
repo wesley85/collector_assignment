@@ -24,7 +24,7 @@ function App() {
           <Route path="/newUser">
             <NewUser />
           </Route>
-          <Route path="/editCollectors/:CollectorID"  component={UpdateUser} />
+          <Route path="/editCollectors/:collectorID"  component={UpdateUser} />
           <Route path="/assignmentPreview"  component={AssignmentPreview} />
         </Switch>
       </div>

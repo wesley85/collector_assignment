@@ -6,104 +6,104 @@ class NewUser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    Active: false,
-    FirstName: '',
-    MiddleInitial: '',
-    LastName: '',
-    CollectorCode: '',
+    active: false,
+    firstName: '',
+    middleInitial: '',
+    lastName: '',
+    collectorCode: '',
     CollectionTeamID: 0,
-    Aging1to15: props.Aging1to15 || false,
-    Aging31to45: props.Aging31to45 || false,
-    Aging31to60: props.Aging31to60 || false,
-    AgingOver60: props.AgingOver60 || false,
-    ProgramBucketA: props.ProgramBucketA || false,
-    ProgramBucketB: props.ProgramBucketB || false,
-    ProgramBucketC: props.ProgramBucketC || false,
-    ProgramBucketSU: props.ProgramBucketSU || false,
-    FinanceCompany: ''
+    aging1to15: props.aging1to15 || false,
+    aging31to45: props.aging31to45 || false,
+    aging31to60: props.aging31to60 || false,
+    agingOver60: props.agingOver60 || false,
+    programBucketA: props.programBucketA || false,
+    programBucketB: props.programBucketB || false,
+    programBucketC: props.programBucketC || false,
+    programBucketSU: props.programBucketSU || false,
+    financeCompany: ''
   }
-  this.handleActiveChange = this.handleActiveChange.bind(this);
+  this.handleactiveChange = this.handleactiveChange.bind(this);
   this.handleAging115Change = this.handleAging115Change.bind(this);
   this.handleAging3145Change = this.handleAging3145Change.bind(this);
   this.handleAging3160Change = this.handleAging3160Change.bind(this);
-  this.handleAgingOver60Change = this.handleAgingOver60Change.bind(this);
+  this.handleagingOver60Change = this.handleagingOver60Change.bind(this);
   this.handleProgramAChange = this.handleProgramAChange.bind(this);
   this.handleProgramBChange = this.handleProgramBChange.bind(this);
   this.handleProgramCChange = this.handleProgramCChange.bind(this);
   this.handleProgramSUChange = this.handleProgramSUChange.bind(this);
 }
 
-handleActiveChange() {
+handleactiveChange() {
   this.setState({ 
-    Active: !this.state.Active
+    active: !this.state.active
   })
 }
 
 handleAging115Change() {
   this.setState({ 
-    Aging1to15: !this.state.Aging1to15
+    aging1to15: !this.state.aging1to15
   })
 }
 
 handleAging3145Change() {
   this.setState({ 
-    Aging31to45: !this.state.Aging31to45
+    aging31to45: !this.state.aging31to45
   })
 }
 
 handleAging3160Change() {
   this.setState({ 
-    Aging31to60: !this.state.Aging31to60
+    aging31to60: !this.state.aging31to60
   })
 }
 
-handleAgingOver60Change() {
+handleagingOver60Change() {
   this.setState({ 
-    AgingOver60: !this.state.AgingOver60
+    agingOver60: !this.state.agingOver60
   })
 }
 
 handleProgramAChange() {
   this.setState({
-    ProgramBucketA: !this.state.ProgramBucketA
+    programBucketA: !this.state.programBucketA
   })
 }
 
 handleProgramBChange() {
   this.setState({
-    ProgramBucketB: !this.state.ProgramBucketB
+    programBucketB: !this.state.programBucketB
   })
 }
 
 handleProgramCChange() {
   this.setState({
-    ProgramBucketC: !this.state.ProgramBucketC
+    programBucketC: !this.state.programBucketC
   })
 }
 
 handleProgramSUChange() {
   this.setState({
-    ProgramBucketSU: !this.state.ProgramBucketSU
+    programBucketSU: !this.state.programBucketSU
   })
 }
 
-onSumitClick = () => {
-    axios.post('https://10.0.0.218:5000/api/collector', {
-      Active: this.state.Active,
-        FirstName: this.state.FirstName,
-        MiddleInitial: this.state.MiddleInitial,
-        LastName: this.state.LastName,
-        CollectorCode: this.state.CollectorCode,
+onSumbitClick = () => {
+    axios.post('https://support.pawneeleasing.com/PublishedCollectorAPI/api/Collector', {
+      active: this.state.active,
+        firstName: this.state.firstName,
+        middleInitial: this.state.middleInitial,
+        lastName: this.state.lastName,
+        collectorCode: this.state.collectorCode,
         CollectionTeamID: this.state.CollectionTeamID,
-        Aging1to15: this.state.Aging1to15,
-        Aging31to45: this.state.Aging31to45,
-        Aging31to60: this.state.Aging31to60,
-        AgingOver60: this.state.AgingOver60,
-        ProgramBucketA: this.state.ProgramBucketA,
-        ProgramBucketB: this.state.ProgramBucketB,
-        ProgramBucketC: this.state.ProgramBucketC,
-        ProgramBucketSU: this.state.ProgramBucketSU,
-        FinanceCompany: this.state.FinanceCompany,
+        aging1to15: this.state.aging1to15,
+        aging31to45: this.state.aging31to45,
+        aging31to60: this.state.aging31to60,
+        agingOver60: this.state.agingOver60,
+        programBucketA: this.state.programBucketA,
+        programBucketB: this.state.programBucketB,
+        programBucketC: this.state.programBucketC,
+        programBucketSU: this.state.programBucketSU,
+        financeCompany: this.state.financeCompany,
         debtType: this.state.debtType
       });
     };
@@ -114,13 +114,13 @@ onSumitClick = () => {
         <form className="newUserForm">
         <div className="newUserItem">
         <h1 className='newUserHeader'>Create Collector</h1>
-          {/*Active or inactive User*/}
-            <label>Active</label>
+          {/*active or inactive User*/}
+            <label>active</label>
           <div className='newUserCheckboxContainer'>
             <input
                 type='checkbox'
-                value={this.state.Active} 
-                onChange={this.handleActiveChange}
+                value={this.state.active} 
+                onChange={this.handleactiveChange}
                 />
                 </div>
           {/*Collector First Name*/}
@@ -129,9 +129,9 @@ onSumitClick = () => {
               type="text" 
               required
               placeholder="First Name" 
-              value={this.state.FirstName} 
+              value={this.state.firstName} 
               onChange={e => this.setState({
-                FirstName: e.target.value
+                firstName: e.target.value
               })}
             />
           {/*Collector Middle Initial*/}
@@ -140,9 +140,9 @@ onSumitClick = () => {
               type="text" 
               required
               placeholder="Middle Initial" 
-              value={this.state.MiddleInitial} 
+              value={this.state.middleInitial} 
               onChange={e => this.setState({
-                MiddleInitial: e.target.value
+                middleInitial: e.target.value
               })}
             />
           {/*Collector Last Name*/}
@@ -151,9 +151,9 @@ onSumitClick = () => {
               type="text" 
               required
               placeholder="Last Name" 
-              value={this.state.LastName} 
+              value={this.state.lastName} 
               onChange={e => this.setState({
-                LastName: e.target.value
+                lastName: e.target.value
               })}
             />
           {/*Collector Code First Initial Middle Initial Last Initial*/}
@@ -162,9 +162,9 @@ onSumitClick = () => {
               type="text" 
               required
               placeholder="Collector Code" 
-              value={this.state.CollectorCode} 
+              value={this.state.collectorCode} 
               onChange={e => this.setState({
-                CollectorCode: e.target.value
+                collectorCode: e.target.value
               })}
             />
             {/*Aging Bucket selection section */}
@@ -174,29 +174,29 @@ onSumitClick = () => {
               <input
                 type='checkbox'
                 className='AgingBucketCheckbox'
-                value={this.state.Aging1to15} 
+                value={this.state.aging1to15} 
                 onChange={this.handleAging115Change}
               /></label>
               <label className='newUserCheckboxLabel'>31-45<br/>
               <input
                 type='checkbox'
                 className='AgingBucketCheckbox'
-                value={this.state.Aging31to45} 
+                value={this.state.aging31to45} 
                 onChange={this.handleAging3145Change}
               /></label>
               <label className='newUserCheckboxLabel'>31-60<br/>
               <input
                 type='checkbox'
                 className='AgingBucketCheckboxsm'
-                value={this.state.Aging31to60} 
+                value={this.state.aging31to60} 
                 onChange={this.handleAging3160Change}
               /></label>
               <label className='newUserCheckboxLabel'>Over 60<br/>
               <input
                 type='checkbox'
                 className='AgingBucketCheckboxlg'
-                value={this.state.AgingOver60} 
-                onChange={this.handleAgingOver60Change}
+                value={this.state.agingOver60} 
+                onChange={this.handleagingOver60Change}
               /></label>
             </div>
             {/*Progam code selection section*/}
@@ -205,29 +205,29 @@ onSumitClick = () => {
               <label className='newUserCheckboxLabel'>A<br/>
               <input
                 type='checkbox'
-                className='ProgramBucketChecbox'
-                value={this.state.ProgramBucketA} 
+                className='programBucketChecbox'
+                value={this.state.programBucketA} 
                 onChange={this.handleProgramAChange}
               /></label>
               <label className='newUserCheckboxLabel'>B<br/>
               <input
                 type='checkbox'
-                className='ProgramBucketChecbox'
-                value={this.state.ProgramBucketB} 
+                className='programBucketChecbox'
+                value={this.state.programBucketB} 
                 onChange={this.handleProgramBChange}
               /></label>
               <label className='newUserCheckboxLabel'>C<br/>
               <input
                 type='checkbox'
-                className='ProgramBucketChecbox'
-                value={this.state.ProgramBucketC} 
+                className='programBucketChecbox'
+                value={this.state.programBucketC} 
                 onChange={this.handleProgramCChange}
               /></label>
               <label className='newUserCheckboxLabel'>SU<br/>
               <input
                 type='checkbox'
-                className='ProgramBucketChecbox'
-                value={this.state.ProgramBucketSU} 
+                className='programBucketChecbox'
+                value={this.state.programBucketSU} 
                 onChange={this.handleProgramSUChange}
               /></label>
             </div>
@@ -237,28 +237,28 @@ onSumitClick = () => {
               <label className='newUserCheckboxLabel'>Pawnee<br/>
               <input
                 type='radio'
-                name='FinanceCompany'
-                className='FinanceCompanyChecbox'
+                name='financeCompany'
+                className='financeCompanyChecbox'
                 onChange={e => this.setState({
-                  FinanceCompany: 'Pawnee'
+                  financeCompany: 'Pawnee'
                 })}
               /></label>
               <label className='newUserCheckboxLabel'>Tandem<br/>
               <input
                 type='radio'
-                name='FinanceCompany'
-                className='FinanceCompanyChecbox' 
+                name='financeCompany'
+                className='financeCompanyChecbox' 
                 onChange={e => this.setState({
-                  FinanceCompany: 'Tandem'
+                  financeCompany: 'Tandem'
                 })}
               /></label>
               <label className='newUserCheckboxLabel'>Both<br/>
               <input
                 type='radio'
-                name='FinanceCompany'
-                className='FinanceCompanyChecboxsm' 
+                name='financeCompany'
+                className='financeCompanyChecboxsm' 
                 onChange={e => this.setState({
-                  FinanceCompany: 'Both'
+                  financeCompany: 'Both'
                 })}
                />
               </label>
@@ -269,7 +269,7 @@ onSumitClick = () => {
               <input
                 type='radio'
                 name='debtType'
-                className='FinanceCompanyChecbox'
+                className='financeCompanyChecbox'
                 onChange={e => this.setState({
                   debtType: 'Delinquency'
                 })}
@@ -278,14 +278,14 @@ onSumitClick = () => {
               <input
                 type='radio'
                 name='debtType'
-                className='FinanceCompanyChecbox' 
+                className='financeCompanyChecbox' 
                 onChange={e => this.setState({
                   debtType: 'Fee'
                 })}
               /></label>
             </div>
-            <Link to='/'>
-              <button className="userListAddButton" onClick={() => this.onSumitClick()}>
+            <Link to='/users'>
+              <button className="userListAddButton" onClick={() => this.onSumbitClick()}>
                 Create Collector
               </button>
             </Link>

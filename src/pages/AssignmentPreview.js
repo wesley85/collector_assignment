@@ -16,7 +16,7 @@ class AssignmentPreview extends React.Component {
   }
   
   getCollectors = () => {
-    axios.get('https://10.0.0.218:5000/api/collector')
+    axios.get('https://support.pawneeleasing.com/PublishedCollectorAPI/api/Collector')
     .then((result) => result.data)
     .then((result) => {
       this.setState({collectorList: result});
@@ -37,27 +37,27 @@ class AssignmentPreview extends React.Component {
               </thead>
             </table>
         {this.state.collectorList.map((Collectors) => (
-          <div key={Collectors.CollectorID}>
+          <div key={Collectors.collectorID}>
             <table className="blueTableData">
               <thead>
-                {Collectors.Active === true &&
+                {Collectors.active === true &&
                 <tr>
-                  <td key={Collectors.CollectorID}>
-                      {Collectors.Active === true && Collectors.FinanceCompany === 'Tandem' && <div><p>{Collectors.CollectorCode}</p></div>}
+                  <td key={Collectors.collectorID}>
+                      {Collectors.active === true && Collectors.financeCompany === 'Tandem' && <div><p>{Collectors.collectorCode}</p></div>}
                     {/* End Condition 1 */}
-                      {Collectors.Active === true && Collectors.FinanceCompany === 'Pawnee' && Collectors.Aging1to15 === true && Collectors.Aging31to45 && Collectors.ProgramBucketA === true && <div><p>{Collectors.CollectorCode}</p></div>}
+                      {Collectors.active === true && Collectors.financeCompany === 'Pawnee' && Collectors.aging1to15 === true && Collectors.aging31to45 && Collectors.programBucketA === true && <div><p>{Collectors.collectorCode}</p></div>}
                     {/* End Condition 2 */}
-                      {Collectors.Active === true && Collectors.FinanceCompany === 'Pawnee' && Collectors.Aging1to15 === true && Collectors.ProgramBucketB === true && Collectors.ProgramBucketC === true && Collectors.ProgramBucketSU === true && <div><p>{Collectors.CollectorCode}</p></div>}
+                      {Collectors.active === true && Collectors.financeCompany === 'Pawnee' && Collectors.aging1to15 === true && Collectors.programBucketB === true && Collectors.programBucketC === true && Collectors.programBucketSU === true && <div><p>{Collectors.collectorCode}</p></div>}
                     {/* End Condition 3 */}
-                      {Collectors.Active === true && Collectors.FinanceCompany === 'Pawnee' && Collectors.Aging31to45 === true && Collectors.Aging31to60 === true && Collectors.ProgramBucketB === true && Collectors.ProgramBucketC === true && Collectors.ProgramBucketSU === true && <div><p>{Collectors.CollectorCode}</p></div>}
+                      {Collectors.active === true && Collectors.financeCompany === 'Pawnee' && Collectors.aging31to45 === true && Collectors.aging31to60 === true && Collectors.programBucketB === true && Collectors.programBucketC === true && Collectors.programBucketSU === true && <div><p>{Collectors.collectorCode}</p></div>}
                     {/* End Condition 4 */}
-                    {Collectors.Active === true && Collectors.FinanceCompany === 'Both' && Collectors.Aging31to60 === true && Collectors.AgingOver60 === true && Collectors.ProgramBucketA=== true && <div><p>{Collectors.CollectorCode}</p></div>}
+                    {Collectors.active === true && Collectors.financeCompany === 'Both' && Collectors.aging31to60 === true && Collectors.agingOver60 === true && Collectors.programBucketA=== true && <div><p>{Collectors.collectorCode}</p></div>}
                   </td>
                   <td>
-                    21 / $500
+                    {Collectors.firstName}
                   </td>
                   <td>
-                    56 / $1000
+                    {Collectors.lastName}
                   </td>
                 </tr>
                 }

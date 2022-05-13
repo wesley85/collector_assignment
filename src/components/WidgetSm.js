@@ -17,7 +17,7 @@ render(){
             className="widgetSmImg"
           />
           <div className="widgetSmUser">
-            <span className="widgetSmUsername">{this.props.FirstName} Keller</span>
+            <span className="widgetSmUsername">{this.props.firstName} Keller</span>
             <span className="widgetSmUserTitle">Software Engineer</span>
           </div>
           <button className="widgetSmButton">
